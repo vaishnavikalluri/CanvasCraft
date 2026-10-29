@@ -171,3 +171,7 @@ Potential improvements include:
 ## 📄 License
 
 This project is intended for portfolio and educational purposes. Add a `LICENSE` file if you choose to distribute it under an open-source license, such as MIT.
+
+## Deployed link 
+
+https://canvascraft-rust.vercel.app/
