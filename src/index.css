@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* Custom styles for canvas grid and interactions */
+.canvas-grid-dots {
+  background-image: radial-gradient(circle, #cbd5e1 1.2px, transparent 1.2px);
+}
+
+.dark .canvas-grid-dots {
+  background-image: radial-gradient(circle, #334155 1.2px, transparent 1.2px);
+}
+
+.canvas-grid-lines {
+  background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+                    linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+}
+
+.dark .canvas-grid-lines {
+  background-image: linear-gradient(to right, #1e293b 1px, transparent 1px),
+                    linear-gradient(to bottom, #1e293b 1px, transparent 1px);
+}
+
+/* Custom scrollbars for panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* Text editing textarea reset */
+.canvas-text-editor {
+  background: transparent;
+  outline: none;
+  border: none;
+  resize: none;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  line-height: 1.35;
+  box-shadow: none;
+}
