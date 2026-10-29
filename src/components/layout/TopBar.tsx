@@ -17,7 +17,8 @@ import {
   AlertCircle, 
   HelpCircle,
   Edit2,
-  Check
+  Check,
+  Home
 } from 'lucide-react';
 
 export const TopBar: React.FC = () => {
@@ -43,6 +44,7 @@ export const TopBar: React.FC = () => {
     setBoardManagerOpen,
     setExportOpen,
     setShortcutsOpen,
+    setCurrentView,
   } = useBoardStore();
 
   const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -90,9 +92,13 @@ export const TopBar: React.FC = () => {
     <header className="h-14 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 px-4 flex items-center justify-between z-30 select-none transition-colors">
       {/* Left Section: Logo, Title, Board Manager */}
       <div className="flex items-center gap-3">
-        {/* Logo & Brand */}
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => setBoardManagerOpen(true)}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-glow">
+        {/* Logo & Brand (Click to go Home) */}
+        <button 
+          onClick={() => setCurrentView('home')}
+          className="flex items-center gap-2 cursor-pointer group text-left focus:outline-none"
+          title="Return to CanvasCraft Home"
+        >
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 via-indigo-600 to-fuchsia-600 flex items-center justify-center text-white shadow-glow group-hover:scale-105 transition-transform">
             <svg
               className="w-4 h-4"
               viewBox="0 0 24 24"
@@ -107,12 +113,22 @@ export const TopBar: React.FC = () => {
               <path d="M9 9h.01" />
             </svg>
           </div>
-          <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white hidden sm:inline">
+          <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white hidden sm:inline group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
             Canvas<span className="text-brand-500">Craft</span>
           </span>
-        </div>
+        </button>
 
         <div className="h-5 w-[1px] bg-slate-200 dark:bg-slate-800 mx-1" />
+
+        {/* Home Button */}
+        <button
+          onClick={() => setCurrentView('home')}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200/60 dark:border-slate-700/60 shadow-sm"
+          title="Return to Home Page"
+        >
+          <Home className="w-3.5 h-3.5 text-brand-500" />
+          <span className="hidden md:inline">Home</span>
+        </button>
 
         {/* Board Manager Button */}
         <button

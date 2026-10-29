@@ -24,10 +24,16 @@ export function useKeyboardShortcuts() {
     setBoardManagerOpen,
     isExportOpen,
     setExportOpen,
+    currentView,
   } = useBoardStore();
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
+      // Only execute canvas shortcuts when the user is inside the canvas view
+      if (currentView !== 'canvas') {
+        return;
+      }
+
       // Check if user is typing into input, textarea, or contentEditable
       const target = e.target as HTMLElement;
       if (
