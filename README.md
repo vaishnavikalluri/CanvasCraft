@@ -1,178 +1,173 @@
-# 🎨 CanvasCraft — Interactive Vector Whiteboard
+# 🎨 CanvasCraft — Interactive Whiteboard
 
-A modern, high-performance, frontend-only interactive vector whiteboard built with **React 19**, **TypeScript**, **Tailwind CSS**, and an **SVG-based canvas engine**. 
+CanvasCraft is a browser-based interactive whiteboard built with React and TypeScript. It provides a flexible workspace for drawing, brainstorming, organizing ideas, creating diagrams, and planning visually.
 
-Designed for brainstorming ideas, sketching diagrams, creating mind maps, organizing sticky notes, and planning projects on an infinite interactive workspace.
+Designed with a focus on usability and frontend engineering, CanvasCraft combines an interactive canvas, intuitive editing tools, smart object manipulation, and flexible import/export options.
 
----
+## ✨ Features
 
-## 🚀 Live Demo & Development Setup
+### 🎨 Drawing & Creation
+- **Freehand Drawing** — Draw naturally using smooth Bézier curve interpolation.
+- **Shape Tools** — Create rectangles, ellipses, lines, and arrows.
+- **Text Boxes** — Add and edit text directly on the canvas.
+- **Sticky Notes** — Organize ideas using sticky notes in seven colors.
+- **Smart Connectors** — Connect objects using anchor points on the top, right, bottom, left, or center.
+- **Frames & Sections** — Group related content into organized sections with focus and zoom support.
+
+### 🖱️ Canvas Interaction
+- **Infinite Canvas** — Navigate a flexible workspace with panning and zooming.
+- **Cursor-Centered Zoom** — Zoom toward the pointer position for precise navigation.
+- **Selection & Editing** — Select individual or multiple objects, resize, duplicate, group, and lock them.
+- **Smart Snapping** — Align objects to edges, centers, and an optional grid.
+- **Customizable Grid** — Switch between dotted, lined, and clean canvas views.
+- **MiniMap** — Navigate large boards using a compact overview.
+- **Contextual Toolbar** — Access relevant editing actions based on the current selection.
+- **Layer Management** — Reorder objects to control their visual stacking.
+
+### ⚡ Productivity
+- **Undo & Redo** — Reverse or restore editing actions.
+- **Keyboard Shortcuts** — Speed up drawing, selection, navigation, and editing.
+- **Multiple Boards** — Create and manage separate whiteboards.
+- **Ready-to-Use Templates** — Start with Blank, Brainstorming, Mind Map, Flowchart, or Study Planner layouts.
+- **Automatic Saving** — Save changes locally with debounced autosaving.
+
+### 📤 Import & Export
+- **PNG Export** — Export the entire board or current viewport.
+- **Flexible Export Settings** — Choose 1×, 2×, or 3× scale and white, dark, or transparent backgrounds.
+- **JSON Backup & Import** — Export boards as `.canvas.json` files and import them with schema validation and ID collision prevention.
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React 19 | Component-based user interface |
+| TypeScript | Type-safe development |
+| Vite | Development server and build tooling |
+| Tailwind CSS | Styling and responsive layouts |
+| SVG | Interactive vector-based canvas rendering |
+| Zustand | Application and canvas state management |
+| Lucide React | Icons |
+| IndexedDB (`idb`) | Persistent local board storage |
+| `localStorage` | Fallback storage |
+| HTML5 Canvas & Blob API | PNG and JSON export functionality |
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or pnpm
 
-### Quick Start
+- Node.js 18 or later
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <YOUR_GITHUB_REPOSITORY_URL>
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd CanvasCraft
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL shown in your terminal. Vite typically uses:
+
+   ```text
+   http://localhost:5173/
+   ```
+
+### Production Build
+
+To create an optimized production build:
+
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd whiteboard
-
-# Install dependencies
-npm install
-
-# Start local development server
-npm run dev
-
-# Build production bundle
 npm run build
 ```
 
-The application will be running at `http://localhost:5173/`.
+## 📁 Project Structure
 
----
-
-## 🛠️ Technology Stack & Architecture
-
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Framework** | React 19 + Vite | High-speed HMR, modern component model |
-| **Language** | TypeScript | Strong typing for canvas elements, geometry, and store state |
-| **Styling** | Tailwind CSS | Sleek glassmorphism, responsive design, dark/light themes |
-| **State Management** | Zustand | Global editor state, active tool, selection, and undo/redo stacks |
-| **Icons** | Lucide React | Modern, accessible iconography |
-| **Persistence** | IndexedDB (`idb`) | Zero-latency local storage with debounced autosaving |
-| **Canvas Engine** | Pure SVG Vector Layer | Crisp resolution-independent rendering, interactive DOM events |
-| **Export Engine** | HTML5 Canvas + Blob API | Retina-ready 2x/3x supersampled PNG and structured JSON backup |
-
----
-
-## ✨ Core Features
-
-### 1. Interactive Drawing & Diagramming Tools
-- **Freehand Pen**: Silky smooth Bézier curve interpolation for natural drawing and sketching.
-- **Eraser**: Click or drag across elements to erase them instantly.
-- **Geometric Shapes**: Rectangles (with rounded corners), ellipses/circles, straight lines, and arrows.
-- **Rich Sticky Notes**: Multiline in-place text editing, drop shadows, and 7 curated color palettes (*Yellow, Sky Blue, Mint Green, Pink, Lavender Purple, Warm Orange, Clean White*).
-- **Text Boxes**: Click anywhere to type headers or notes with customizable font size, weight, and alignment.
-- **Smart Connectors**: Dynamic lines and curves that link to anchor points (*top, right, bottom, left, center*) on shapes and sticky notes, staying connected as you move or resize them.
-- **Frames & Sections**: Named grouping areas (*e.g., Ideas, High Priority, Action Items*) with a one-click "Focus / Zoom to Section" feature.
-
-### 2. Infinite Canvas Navigation
-- **Smooth Panning**: Hold <kbd>Space</kbd> + drag, middle-mouse drag, or use the dedicated Hand tool (<kbd>H</kbd>).
-- **Cursor-Centered Zoom**: Smooth mouse wheel zoom (<kbd>Ctrl</kbd> + wheel) centered right under the cursor.
-- **Interactive Minimap**: Live bottom-right overview displaying all canvas objects with a viewport bounding rectangle; click or drag on the minimap to jump anywhere.
-- **Configurable Grid**: Switch between **Dotted Grid**, **Grid Lines**, or **Clean Canvas**.
-- **Smart Snapping**: Real-time alignment guide lines snap elements to nearby object edges and centers. Optional 20px grid snapping.
-
-### 3. Selection & Manipulation
-- **Single & Multi-Select**: Click individual items, hold <kbd>Shift</kbd> for multi-selection, or drag a marquee selection box.
-- **8-Handle Resizing**: Resize any element from corners or edges; hold <kbd>Shift</kbd> to preserve aspect ratio.
-- **Contextual Floating Toolbar**: Instant quick-actions hovering directly above selected elements (*color swatches, layer order, duplicate, delete, lock*).
-- **Right Properties Panel**: Granular control over fill, stroke, thickness, stroke style (*solid, dashed, dotted*), opacity, font sizes, alignment, and geometry.
-- **Layer Ordering**: Bring to Front, Bring Forward, Send Backward, Send to Back.
-- **Grouping & Locking**: Group multi-selected items into logical clusters; lock elements to prevent accidental edits.
-
-### 4. Robust Undo / Redo & Autosave
-- **Batch-Committed History**: Granular undo/redo stack (<kbd>Ctrl+Z</kbd> / <kbd>Ctrl+Shift+Z</kbd>) that commits once per user action rather than on every mouse movement.
-- **Offline-First Persistence**: Autosaves changes to browser IndexedDB (with graceful `localStorage` fallback) with a visible status indicator (*Saved, Saving...*).
-- **Safe State**: Refreshing or closing the browser preserves the exact canvas objects, viewport, and board title.
-
-### 5. Multi-Board Management & Starter Templates
-Choose from 5 pre-built templates or start fresh:
-1. **Blank Whiteboard** — Clean slate for freeform ideation.
-2. **Brainstorming Board** — 3 organized frames with categorized sticky notes.
-3. **Mind Map** — Central concept radiating out into subtopics with curved connectors.
-4. **Flowchart** — Decision diamonds, process rectangles, start/end terminals, and directional arrows.
-5. **Study Planner** — Kanban-style workflow frames for tracking learning goals and milestones.
-
-### 6. Export & Import
-- **High-Res PNG Export**: Export either the entire canvas content or the visible viewport at 1x, 2x (Retina), or 3x (Ultra HD) with choice of white, dark, or transparent background.
-- **JSON Backup & Restore**: Export complete board data as `.canvas.json` and import previously saved files with schema validation and automatic ID collision prevention.
-
----
-
-## ⌨️ Keyboard Shortcuts Reference
-
-| Shortcut | Action |
-| :--- | :--- |
-| <kbd>V</kbd> | Select Tool |
-| <kbd>H</kbd> | Hand / Pan Tool |
-| <kbd>P</kbd> | Freehand Pen Tool |
-| <kbd>E</kbd> | Eraser Tool |
-| <kbd>R</kbd> | Rectangle Tool |
-| <kbd>O</kbd> | Circle / Ellipse Tool |
-| <kbd>L</kbd> | Straight Line Tool |
-| <kbd>A</kbd> | Arrow Tool |
-| <kbd>T</kbd> | Text Tool |
-| <kbd>S</kbd> | Sticky Note Tool |
-| <kbd>C</kbd> | Smart Connector Tool |
-| <kbd>F</kbd> | Frame / Section Tool |
-| <kbd>Ctrl</kbd> + <kbd>Z</kbd> | Undo |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> | Redo |
-| <kbd>Ctrl</kbd> + <kbd>C</kbd> | Copy selected elements |
-| <kbd>Ctrl</kbd> + <kbd>V</kbd> | Paste clipboard |
-| <kbd>Ctrl</kbd> + <kbd>D</kbd> | Duplicate selected elements |
-| <kbd>Del</kbd> / <kbd>Backspace</kbd> | Delete selected elements |
-| <kbd>Ctrl</kbd> + <kbd>A</kbd> | Select All elements |
-| <kbd>Esc</kbd> | Clear selection / close modals |
-| <kbd>Ctrl</kbd> + <kbd>0</kbd> | Reset zoom to 100% |
-| <kbd>Ctrl</kbd> + <kbd>1</kbd> | Fit all content on screen |
-| <kbd>Space</kbd> + Drag | Pan canvas |
-| <kbd>?</kbd> | Open Keyboard Shortcuts cheatsheet |
-
----
-
-## 📂 Project Structure
-
-```
+```text
 src/
 ├── components/
 │   ├── canvas/
-│   │   ├── CanvasGrid.tsx           # Dotted / lined SVG background patterns
-│   │   ├── CanvasObject.tsx         # Render dispatcher for canvas elements
-│   │   ├── ContextualToolbar.tsx    # Micro-toolbar hovering above selected objects
-│   │   ├── MiniMap.tsx              # Live interactive bottom-right minimap
-│   │   ├── SelectionBox.tsx         # Selection bounding box with 8 resize handles
-│   │   └── WhiteboardCanvas.tsx     # Core SVG canvas with event handling & snapping
+│   │   ├── CanvasGrid.tsx
+│   │   ├── CanvasObject.tsx
+│   │   ├── ContextualToolbar.tsx
+│   │   ├── MiniMap.tsx
+│   │   ├── SelectionBox.tsx
+│   │   └── WhiteboardCanvas.tsx
 │   ├── layout/
-│   │   ├── BottomBar.tsx            # Zoom slider, fit-to-screen, minimap host
-│   │   ├── PropertiesPanel.tsx      # Contextual right inspector panel
-│   │   ├── Toolbar.tsx              # 12-tool floating left toolbar with hotkeys
-│   │   └── TopBar.tsx               # Board title, manager, undo/redo, theme, export
+│   │   ├── BottomBar.tsx
+│   │   ├── PropertiesPanel.tsx
+│   │   ├── Toolbar.tsx
+│   │   └── TopBar.tsx
 │   └── objects/
-│       ├── ConnectorObject.tsx      # Smart anchor connectors with straight/curved routing
-│       ├── FrameObject.tsx          # Section containers with zoom focus
-│       ├── FreehandObject.tsx       # Smooth Catmull-Rom Bézier pen strokes
-│       ├── ShapeObject.tsx          # Rectangles, ellipses, diamonds, lines, arrows
-│       ├── StickyNoteObject.tsx     # Color-themed notes with in-place text editing
-│       └── TextObject.tsx           # Freeform text objects with multiline support
+│       ├── ConnectorObject.tsx
+│       ├── FrameObject.tsx
+│       ├── FreehandObject.tsx
+│       ├── ShapeObject.tsx
+│       ├── StickyNoteObject.tsx
+│       └── TextObject.tsx
 ├── dialogs/
-│   ├── BoardManager.tsx             # Board CRUD, duplicates, and template picker
-│   ├── ExportDialog.tsx             # PNG (1x/2x/3x) and JSON export & import
-│   └── ShortcutsDialog.tsx          # Keyboard shortcuts cheat sheet
+│   ├── BoardManager.tsx
+│   ├── ExportDialog.tsx
+│   └── ShortcutsDialog.tsx
 ├── hooks/
-│   ├── useAutosave.ts               # Debounced persistence to IndexedDB
-│   └── useKeyboardShortcuts.ts      # Global keybindings with input safety
+│   ├── useAutosave.ts
+│   └── useKeyboardShortcuts.ts
 ├── lib/
-│   ├── export.ts                    # Canvas-to-PNG rasterization & JSON export
-│   ├── geometry.ts                  # Screen transforms, bounds, Bézier curves, snapping
-│   ├── storage.ts                   # IndexedDB wrapper with localStorage fallback
-│   └── validation.ts                # JSON schema validation & collision remapping
+│   ├── export.ts
+│   ├── geometry.ts
+│   ├── storage.ts
+│   └── validation.ts
 ├── store/
-│   └── boardStore.ts                # Zustand global state, selection, and history
+│   └── boardStore.ts
 ├── templates/
-│   └── boardTemplates.ts            # 5 starter boards: Blank, Brainstorm, Mind Map, etc.
+│   └── boardTemplates.ts
 ├── types/
-│   ├── board.ts                     # Board, Viewport, History, and UI types
-│   └── canvasObjects.ts             # Element discriminated union & geometry interfaces
-├── App.tsx                          # App root wiring layout, canvas, and modals
-├── index.css                        # Tailwind directives and custom canvas utility styles
-└── main.tsx                         # Entry point
+│   ├── board.ts
+│   └── canvasObjects.ts
+├── App.tsx
+├── index.css
+└── main.tsx
 ```
 
----
+## 🧠 Engineering Highlights
 
-## 🛡️ License
+- **Vector-Based Rendering** — Use SVG elements to represent and manipulate interactive canvas objects.
+- **State Management** — Centralize board state and editing operations with Zustand.
+- **Efficient Autosaving** — Debounce save operations to reduce unnecessary storage writes.
+- **Persistent Local Storage** — Use IndexedDB with a `localStorage` fallback.
+- **Reusable Components** — Separate canvas rendering, object types, layout, dialogs, and utilities.
+- **Data Validation** — Validate imported board data before adding it to the workspace.
+- **Export Functionality** — Support image exports and portable JSON board files.
+- **Keyboard-Driven Workflow** — Support faster interaction through dedicated shortcuts.
 
-MIT License — Created for portfolio and open-source demonstration.
+## 🔮 Future Enhancements
+
+Potential improvements include:
+
+- Collaborative real-time editing
+- Cloud-based board synchronization
+- Additional drawing and diagramming tools
+- More customizable templates
+- Enhanced accessibility
+- Version history and board recovery
+
+## 📄 License
+
+This project is intended for portfolio and educational purposes. Add a `LICENSE` file if you choose to distribute it under an open-source license, such as MIT.
