@@ -56,8 +56,10 @@ interface BoardState {
   isExportOpen: boolean;
   isShortcutsOpen: boolean;
   searchQuery: string;
+  currentView: 'home' | 'canvas';
 
   // Actions
+  setCurrentView: (view: 'home' | 'canvas') => void;
   setTitle: (title: string) => void;
   setTool: (tool: ToolType) => void;
   setViewport: (viewport: Partial<Viewport> | ((prev: Viewport) => Viewport)) => void;
@@ -169,7 +171,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   isExportOpen: false,
   isShortcutsOpen: false,
   searchQuery: '',
+  currentView: 'home',
 
+  setCurrentView: (view) => set({ currentView: view }),
   setTitle: (title) => set({ title, updatedAt: Date.now() }),
 
   setTool: (tool) => {

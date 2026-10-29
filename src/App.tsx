@@ -10,9 +10,11 @@ import { WhiteboardCanvas } from './components/canvas/WhiteboardCanvas';
 import { BoardManager } from './dialogs/BoardManager';
 import { ExportDialog } from './dialogs/ExportDialog';
 import { ShortcutsDialog } from './dialogs/ShortcutsDialog';
+import { HomePage } from './components/home/HomePage';
 
 export function App() {
   const theme = useBoardStore((s) => s.theme);
+  const currentView = useBoardStore((s) => s.currentView);
 
   // Initialize autosave & global keyboard shortcuts
   useAutosave();
@@ -26,6 +28,10 @@ export function App() {
       document.documentElement.classList.remove('dark');
     }
   }, [theme]);
+
+  if (currentView === 'home') {
+    return <HomePage />;
+  }
 
   return (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans select-none antialiased">
